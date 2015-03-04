@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SlipsUI Plug-in
+Bundle-SymbolicName: com.ballydev.sds.slips;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.ballydev.sds.slipsui.Activator
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.ballydev.sds.commonuilib,
+ com.ballydev.sds.framework
+Eclipse-LazyStart: true
+Export-Package: com.ballydev.sds.slipsui,
+ com.ballydev.sds.slipsui.action,
+ com.ballydev.sds.slipsui.composite,
+ com.ballydev.sds.slipsui.constants,
+ com.ballydev.sds.slipsui.controller,
+ com.ballydev.sds.slipsui.controls,
+ com.ballydev.sds.slipsui.exception,
+ com.ballydev.sds.slipsui.form,
+ com.ballydev.sds.slipsui.print,
+ com.ballydev.sds.slipsui.service,
+ com.ballydev.sds.slipsui.shell,
+ com.ballydev.sds.slipsui.util,
+ com.ballydev.sds.slipsui.validator

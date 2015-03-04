@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JackpotUI Plug-in
+Bundle-SymbolicName: com.ballydev.sds.jackpot;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.ballydev.sds.jackpotui.Activator
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.ballydev.sds.framework,
+ com.ballydev.sds.commonuilib
+Eclipse-LazyStart: false
+Export-Package: com.ballydev.sds.jackpotui,
+ com.ballydev.sds.jackpotui.action,
+ com.ballydev.sds.jackpotui.composite,
+ com.ballydev.sds.jackpotui.constants,
+ com.ballydev.sds.jackpotui.controller,
+ com.ballydev.sds.jackpotui.controls,
+ com.ballydev.sds.jackpotui.exception,
+ com.ballydev.sds.jackpotui.form,
+ com.ballydev.sds.jackpotui.print,
+ com.ballydev.sds.jackpotui.service,
+ com.ballydev.sds.jackpotui.shell,
+ com.ballydev.sds.jackpotui.util,
+ com.ballydev.sds.jackpotui.validator
+Bundle-ClassPath: .

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="${project.name}" default="jar" basedir=".">
+
+	<!-- Default Properties for Build	-->
+	<property file="plugin-build.properties"/>
+
+	<!-- Classpath for Ant -->
+	<echo message="Setting the path to the ${lib.dir} folder" />
+	<path id="classpath">
+		<fileset dir="${common.proj}" includes="*.jar" />
+		<fileset dir="${wsclient.proj}" includes="*.jar" />
+		<fileset dir="${pluginjar.proj}" includes="**/*.jar" />	
+	</path>
+	
+	<!-- Compile all source files to the classes folder. -->
+	<target name="compile">
+		<echo message="Compiling the java source files" />
+		<mkdir dir="${build.dir}/classes"/>
+		<javac destdir="${build.dir}/classes" deprecation="on">
+			<src path="${java.base}" />
+			<classpath>
+				<path refid="classpath" />
+			</classpath>
+		</javac>
+		<copy todir="${build.dir}/classes">
+			<fileset dir="${java.base}" excludes="**/*.java"/>
+		</copy>
+	</target>
+
+	<!-- Copy all the classes and jars to WEB-INF	-->
+	<target name="copy" depends="compile">
+		<echo message="Copying ${config.dir},${images.dir} and plugin.xml into ${build.dir}/classes folder" />
+		<copy todir="${build.dir}/classes">
+			<fileset dir="." includes="${config.dir}/*,${images.dir}/*" />
+		</copy>
+		<echo message="Renaming META-INF folder and MANIFEST.MF file to meta-inf and Manifest.mf and copying to ${build.dir} folder"/>
+		<mkdir dir="${build.dir}/classes/meta-inf"/>
+		<copy file="META-INF/MANIFEST.MF" tofile="${build.dir}/classes/meta-inf/Manifest.mf"/>
+		<copy todir="${build.dir}/classes" file="plugin.xml"/>
+	</target>	
+
+	<!-- Create the Plugin Jar	-->
+	<target name="jar" depends="copy">
+		<mkdir dir="${dist.dir}"/>
+		<jar destfile="${dist.dir}/${project.name}.jar"
+	       basedir="${build.dir}/classes"/>
+		<antcall target="clean"></antcall>
+	</target>	
+
+	<!-- Clean the directories	-->
+	<target name="clean">
+		<echo message="Cleaning up folders " />		
+		<delete dir="${build.dir}"/>
+		<echo message="${project.name}.jar is available in project's ${dist.dir} folder"/>
+	</target>
+
+	
+	
+</project>

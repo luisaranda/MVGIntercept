@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         id="com.ballydev.sds.jackpot"
+         name="Jackpot"
+         point="com.ballydev.sds.framework.pluginDescriptors">
+         <pluginDescriptor class="com.ballydev.sds.jackpotui.JackpotUIPluginDescriptor"/>
+   </extension>
+
+</plugin>

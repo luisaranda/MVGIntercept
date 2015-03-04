@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC
+"-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+"http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+<form-validation>
+	 <global> 
+	   <validator name="NumericSpacesCommas"
+	              classname="com.ballydev.sds.jackpotui.validator.JackpotUIValidator"
+	              method="validateNumericSpacesDoubleCommas"                 
+	              methodParams="java.lang.Object,org.apache.commons.validator.Field"
+	              msg ="JACKPOT.VALIDATION.ERRORS.NUMERIC.SPACE.COMMAS"/>
+	   <validator name="DuplicateValuesBetweenCommas"
+	              classname="com.ballydev.sds.jackpotui.validator.JackpotUIValidator"
+	              method="validateDuplicateValuesBetweenCommas"                 
+	              methodParams="java.lang.Object,org.apache.commons.validator.Field"
+	              msg ="JACKPOT.VALIDATION.DUPLICATE.VALUE.BETWEEN.COMMAS"/>
+	   <validator name="MinMaxValuesBetweenCommas"
+	              classname="com.ballydev.sds.jackpotui.validator.JackpotUIValidator"
+	              method="validateMinMaxValuesBetweenCommas"                 
+	              methodParams="java.lang.Object,org.apache.commons.validator.Field"
+	              msg ="JACKPOT.VALIDATION.MIN.MAX.VALUE.BETWEEN.COMMAS"/>
+	   <validator name="MinMaxValuesBetweenCommasForProgLevel"
+	              classname="com.ballydev.sds.jackpotui.validator.JackpotUIValidator"
+	              method="validateMinMaxValuesBetweenCommasForProgLevel"
+	              methodParams="java.lang.Object,org.apache.commons.validator.Field"
+	              msg="JACKPOT.PROG.LEVEL.VALIDATION.MIN.MAX.VALUE.BETWEEN.COMMAS"/>
+	   <validator name="ValidateSpaces"
+	              classname="com.ballydev.sds.jackpotui.validator.JackpotUIValidator"
+	              method="validateSpaces"                 
+	              methodParams="java.lang.Object,org.apache.commons.validator.Field"
+	              msg ="JACKPOT.VALIDATION.SPACES.NOT.ALLOWED"/>
+	  <validator name="accountNumberMismatch"
+ 	    		  classname="com.ballydev.sds.jackpotui.validator.JackpotUIValidator"
+ 	    		  method="validateAccountNumbers"
+ 	    		  methodParams="java.lang.Object,org.apache.commons.validator.Field"
+ 	    		  msg="CARDLESS.ACCOUNT.NUMBER.MISMATCH" />
+ 	  <validator name="maskedDataEnterAmountRequired"
+ 	    		  classname="com.ballydev.sds.jackpotui.validator.JackpotUIValidator"
+ 	    		  method="maskedDataEnterAmountRequired"
+ 	    		  methodParams="java.lang.Object,org.apache.commons.validator.Field"
+ 	    		  msg="FRAMEWORK.ERRORS.RANGE" />
+ 	  <validator name="confirmAccountNumberRequired"
+ 	    		  classname="com.ballydev.sds.jackpotui.validator.JackpotUIValidator"
+ 	    		  method="confirmAccountNumberRequired"
+ 	    		  methodParams="java.lang.Object,org.apache.commons.validator.Field"
+ 	    		  msg="FRAMEWORK.ERRORS.REQUIRED" />
+ 	  <validator name="accountNumberRequired"
+ 	    		  classname="com.ballydev.sds.jackpotui.validator.JackpotUIValidator"
+ 	    		  method="accountNumberRequired"
+ 	    		  methodParams="java.lang.Object,org.apache.commons.validator.Field"
+ 	    		  msg="FRAMEWORK.ERRORS.REQUIRED" />
+	  </global>
+	<formset>
+		<form name="EmployeeShiftSlotDetailsForm">
+			<field property="numOfMinutes"
+				depends="numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtNumOfMins</var-value>
+				</var>				  
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.NUMBER.OF.MINUTES" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="employeeId"
+				depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmployeeId</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.EMP.ID" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="empPassword" depends="ValidateSpaces,required">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmpPassword</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.EMP.PASSWORD" />			
+			</field>
+			<field property="slotNo" depends="numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSlotSeqLocationNo</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.SLOT.NUMBER" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="slotLocationNo" depends="AlphaNumeric">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSlotSeqLocationNo</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.SLOT.LOCATION" />
+			</field>
+			<field property="sequenceNumber" depends="numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSequenceNumber</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>long</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.SEQ.NUMBER" />
+				<arg key="1" resource="false" />
+			</field>
+		</form>
+		<form name="VoidForm">
+			<field property="employeeId" depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmployeeId</var-value>
+				</var>	
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>			
+				<arg key="JACKPOT.VALIDATION.EMP.ID" />	
+				<arg key="1" resource="false" />			
+			</field>		
+			<field property="empPassword"
+				depends="ValidateSpaces,required">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmployeePwd</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.EMP.PASSWORD" />
+			</field>
+			<field property="sequenceNumber" depends="numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSequenceNo</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>long</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.SEQ.NUMBER" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="slotNo" depends="numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSlotOrLocNo</var-value>
+				</var>
+				<var>
+					<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.SLOT.NUMBER" />
+				<arg key="1" resource="false" />
+			</field>
+		</form>
+		<form name="ReprintForm">
+			<field property="employeeId"
+				depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmployeeId</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.EMP.ID" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="empPassword" depends="ValidateSpaces,required">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmployeePwd</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.EMP.PASSWORD" />
+			</field>
+			<field property="sequenceNumber" depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSequenceNo</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>long</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.SEQ.NUMBER" />
+				<arg key="1" resource="false" />
+			</field>		
+		</form>
+		<form name="DisplayJackpotForm">
+			<field property="employeeId" depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmployeeId</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.EMP.ID" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="empPassword"
+				depends="ValidateSpaces,required">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmployeePwd</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.EMP.PASSWORD" />				
+			</field>
+			<field property="slotNo" depends="numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSlotNumber</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<!-- <var>
+					<var-name>min_len</var-name>
+					<var-value>1</var-value>						        	
+					</var>
+					<var>
+					<var-name>max_len</var-name>
+					<var-value>5</var-value>						        	
+					</var>	  -->
+				<arg key="JACKPOT.VALIDATION.SLOT.NUMBER" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="slotLocationNo" depends="AlphaNumeric">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSlotNumber</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.SLOT.LOCATION" />
+			</field>
+			<field property="sequenceNumber" depends="numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSequenceNumber</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>long</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.SEQ.NUMBER" />
+				<arg key="1" resource="false" />
+			</field>
+		</form>
+		<form name="AuthorizationTaxMPAmountForm">
+			<field property="authEmployeeIdOne"
+				depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAuthEmployeeIdOne</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.AUTH.EMP.ID.ONE" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="authPasswordOne"
+				depends="ValidateSpaces,required">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAuthPasswordOne</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.AUTH.EMP.PASS.ONE" />
+			</field>
+			<field property="authEmployeeIdTwo"
+				depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAuthEmployeeIdTwo</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.AUTH.EMP.ID.TWO" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="authPasswordTwo"
+				depends="ValidateSpaces,required">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAuthPasswordTwo</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.AUTH.EMP.PASS.TWO" />
+			</field>
+		</form>
+		<form name="PendingJackpotDetailsForm">
+			<field property="payline" depends="NumericSpacesCommas,MinMaxValuesBetweenCommas,DuplicateValuesBetweenCommas">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtPayline</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.PAYLINE" />
+			</field>
+			<field property="coinsPlayed" depends="numeric,ValueRange">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtCoinsPlayed</var-value>
+				</var>				
+				 <var>
+					<var-name>max_val</var-name>
+					<var-value>2147483647</var-value>						        	
+				</var>
+				<var>
+					<var-name>min_val</var-name>
+					<var-value>1</var-value>						        	
+				</var>
+				<var>
+					<var-name>type</var-name>
+					<var-value>integer</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.COINS.PLAYED" />
+				<arg key="1" resource="false"/>
+				<arg key="2147483647" resource="false"/>
+			</field>
+			<field property="windowNo" depends="AlphaNumeric">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtWindowNo</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.WINDOW.NO" />
+			</field>
+			<field property="playerCard" depends="AlphaNumeric">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtPlayerCard</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.PLAYER.CARD" />
+			</field>
+		</form>	
+		<form name="AmountSlotAttendantIdForm">
+			<field property="expiryDate" depends="required,previousDate"> 
+	       		<var>
+          	       	<var-name>control</var-name>
+			       	<var-value>dtPickerExpiryDate</var-value>						        	
+				</var>			
+				<arg key="JACKPOT.VALIDATION.CHECK.EXPIRY.DATE.TIME"/>
+          	</field> 
+			<field property="handPaidAmount"
+				depends="required,maskedDataEnterAmountRequired,ValueRange,Double">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtHandPaidAmount</var-value>
+				</var>
+				<var>
+                     <var-name>max_val</var-name>
+                     <var-value>99999999999999.00</var-value> 
+               </var>
+               <var>
+                     <var-name>min_val</var-name>
+                     <var-value>0.01</var-value>  
+               </var>
+               <var>
+                     <var-name>type</var-name>
+                     <var-value>double</var-value>  
+               </var>  
+				<arg key="JACKPOT.VALIDATION.HAND.PAID.AMOUNT" />
+				<arg key="0.01" resource="false"/>
+                <arg key="99999999999999.00" resource="false"/>
+			</field>
+			<!--  <field property="machinePaidAmount" depends="ValueRange,Double">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtMachinePaidAmount</var-value>
+				</var>
+				<var>
+                     <var-name>max_val</var-name>
+                     <var-value>999999999.99</var-value> 
+               </var>
+               <var>
+                     <var-name>min_val</var-name>
+                     <var-value>0.00</var-value>  
+               </var>
+               <var>
+                     <var-name>type</var-name>
+                     <var-value>double</var-value>  
+               </var>  
+				<arg key="JACKPOT.VALIDATION.MACHINE.PAID.AMOUNT" />
+				<arg key="0.01" resource="false"/>
+                <arg key="999999999.99" resource="false"/>
+			</field> -->
+			<field property="slotAttendantId"
+				depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSlotAttendantId</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.SLOT.ATTN.ID" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="amountAuthEmpId"
+				depends="numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAmountAuthEmpId</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.OVERIDE.AMT.AUTH.ID" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="amountAuthPassword" depends="ValidateSpaces">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAmountAuthPassword</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.OVERIDE.EMP.PASSWORD" />			
+			</field>
+			<field property="accountNumber" depends="accountNumberRequired,numeric">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAccountNumber</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.ACCOUNT.NUMBER" />
+			</field>
+			<field property="confirmAccountNumber" 
+					depends="confirmAccountNumberRequired,numeric,accountNumberMismatch">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtConfirmAccountNumber</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.CONFIRM.ACCOUNT.NUMBER" />			
+			</field>
+		</form>	
+		<form name="ManualJPAuthMachineAmtTaxForm">
+			<field property="authEmployeeIdOne"
+				depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAuthEmployeeIdOne</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.AUTH.EMP.ID.ONE" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="authPasswordOne"
+				depends="ValidateSpaces,required">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAuthPasswordOne</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.AUTH.EMP.PASS.ONE" />
+			</field>
+			<field property="authEmployeeIdTwo"
+				depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAuthEmployeeIdTwo</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.AUTH.EMP.ID.TWO" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="authPasswordTwo"
+				depends="ValidateSpaces,required">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAuthPasswordTwo</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.AUTH.EMP.PASS.TWO" />
+			</field>
+			<!-- <field property="machinePaidAmount"
+				depends="required,ValueRange">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtMachinePaidAmount</var-value>
+				</var>
+				<var>
+                     <var-name>max_val</var-name>
+                     <var-value>999999999.99</var-value> 
+               </var>
+               <var>
+                     <var-name>min_val</var-name>
+                     <var-value>0.00</var-value>  
+               </var>
+               <var>
+                     <var-name>type</var-name>
+                     <var-value>double</var-value>  
+               </var>  
+				<arg key="JACKPOT.VALIDATION.MACHINE.PAID.AMOUNT" />
+				<arg key="0.01" resource="false"/>
+                <arg key="999999999.99" resource="false"/> 
+			</field> -->
+		</form>
+		<form name="ManualJPLastScreenForm">
+			<field property="payline" depends="NumericSpacesCommas,MinMaxValuesBetweenCommas,DuplicateValuesBetweenCommas">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtPayline</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.PAYLINE" />
+			</field>
+			<field property="coinsPlayed" depends="numeric,ValueRange">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtCoinsPlayed</var-value>
+				</var>
+				<var>
+					<var-name>max_val</var-name>
+					<var-value>2147483647</var-value>						        	
+				</var>
+				<var>
+					<var-name>min_val</var-name>
+					<var-value>1</var-value>						        	
+				</var>
+				<var>
+					<var-name>type</var-name>
+					<var-value>integer</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.COINS.PLAYED" />
+				<arg key="1" resource="false"/>
+				<arg key="2147483647" resource="false"/>
+			</field>
+			<field property="windowNo" depends="AlphaNumeric">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtWindowNo</var-value>
+				</var>				
+				<arg key="JACKPOT.VALIDATION.WINDOW.NO" />
+			</field>
+			<field property="playerCard" depends="AlphaNumeric">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtPlayerCard</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.PLAYER.CARD" />
+			</field>
+		</form>
+		<form name="ManualJPHandPaidAmtPromoJackpotTypeForm"> 
+			<field property="expiryDate" depends="required,previousDate"> 
+	       		<var>
+          	       	<var-name>control</var-name>
+			       	<var-value>dtPickerExpiryDate</var-value>						        	
+				</var>			
+				<arg key="JACKPOT.VALIDATION.CHECK.EXPIRY.DATE.TIME"/>
+          	</field>         
+			<field property="handPaidAmount"
+				depends="required,ValueRange,Double">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtHandPaidAmount</var-value>
+				</var>
+				<var>
+                     <var-name>max_val</var-name>
+                     <var-value>99999999999999.00</var-value> 
+               </var>
+               <var>
+                     <var-name>min_val</var-name>
+                     <var-value>0.01</var-value>  
+               </var>
+               <var>
+                     <var-name>type</var-name>
+                     <var-value>double</var-value>  
+               </var>  
+				<arg key="JACKPOT.VALIDATION.HAND.PAID.AMOUNT" />
+				<arg key="0.01" resource="false"/>
+                <arg key="99999999999999.00" resource="false"/>
+			</field>
+			<field property="accountNumber" depends="required,numeric">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAccountNumber</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.ACCOUNT.NUMBER" />
+			</field>
+			<field property="confirmAccountNumber" 
+					depends="required,numeric,accountNumberMismatch">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtConfirmAccountNumber</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.CONFIRM.ACCOUNT.NUMBER" />			
+			</field>
+			<field property="progressiveLevel" depends="NumericSpacesCommas,MinMaxValuesBetweenCommasForProgLevel,DuplicateValuesBetweenCommas">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtProgressiveLevel</var-value>
+				</var>
+				<var>
+                     <var-name>max_val</var-name>
+                     <var-value>46</var-value> 
+               </var>
+               <var>
+                     <var-name>min_val</var-name>
+                     <var-value>1</var-value>  
+               </var>
+               <arg key="JACKPOT.VALIDATION.PROGRESSIVE.LEVEL" />
+				<arg key="1" resource="false"/>
+                <arg key="46" resource="false"/>			
+			</field>
+		</form>
+		<form name="ManualJPEmployeeSlotStandShiftForm">
+			<field property="employeeId"
+				depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmployeeId</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.EMP.ID" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="empPassword"
+				depends="ValidateSpaces,required">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmpPassword</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.EMP.PASSWORD" />
+			</field>
+			<field property="slotLocationNo"
+				depends="required,AlphaNumeric">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSlotSeqLocationNo</var-value>
+				</var>
+				<arg key="JACKPOT.VALIDATION.SLOT.LOCATION" />
+			</field>
+			<field property="slotNo" depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSlotSeqLocationNo</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.SLOT.NUMBER" />
+				<arg key="1" resource="false" />
+			</field>
+		</form>
+		
+		<form name="JackpotSlipReportForm">
+		<field property="employeeId" depends="numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmployeeId</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="JACKPOT.VALIDATION.EMP.ID" />
+				<arg key="1" resource="false" />
+			</field>
+		  <field property="fromDate" depends="required,futureDateUTC"> 
+	       <var>
+          	       	<var-name>control</var-name>
+			       	<var-value>dateFromTime</var-value>						        	
+			</var>			
+			<arg key="JACKPOT.VALIDATION.FROM.DATE"/>				
+          </field>        
+            <field property="toDate" depends="required,futureDateUTC,compareDate"> 
+	       <var>
+          	       	<var-name>control</var-name>
+			       	<var-value>dateToTime</var-value>						        	
+			</var>
+			<var>
+			 	<var-name>fromDate</var-name>
+			    <var-value>fromDate</var-value>	
+			</var>	
+			<arg key="JACKPOT.VALIDATION.TO.DATE"/>
+			<arg key="JACKPOT.VALIDATION.FROM.DATE"/>			
+          </field> 
+		</form>
+		
+	</formset>
+</form-validation>
+
+

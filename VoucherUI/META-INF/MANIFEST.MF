@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: VoucherUI Plug-in
+Bundle-SymbolicName: VoucherUI;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.ballydev.sds.commonuilib,
+ com.ballydev.sds.framework,
+ ReportPlugin

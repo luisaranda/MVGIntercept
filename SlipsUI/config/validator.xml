@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC
+"-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+"http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+<form-validation>
+	<global> 
+	   <validator name="ValidateSpaces"
+	              classname="com.ballydev.sds.slipsui.validator.SlipsUIValidator"
+	              method="validateSpaces"                 
+	              methodParams="java.lang.Object,org.apache.commons.validator.Field"
+	              msg ="SLIP.VALIDATION.SPACES.NOT.ALLOWED"/>
+	   <validator name="AccountNumberMismatch"
+	              classname="com.ballydev.sds.slipsui.validator.SlipsUIValidator"
+	              method="validateAccountNumberMismatch"                 
+	              methodParams="java.lang.Object,org.apache.commons.validator.Field"
+	              msg ="SLIP.ACC.NOS.DO.NOT.MATCH"/>
+	   <validator name="NonZeroValue"
+	              classname="com.ballydev.sds.slipsui.validator.SlipsUIValidator"
+	              method="validateNonZeroValue"                 
+	              methodParams="java.lang.Object,org.apache.commons.validator.Field"
+	              msg ="FRAMEWORK.ACC.NO.INVALID"/>
+	  </global>
+	<formset>	
+		<form name="VoidForm">
+			<field property="employeeId"
+				depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmployeeId</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="SLIP.VALIDATION.EMP.ID" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="employeePwd"
+				depends="ValidateSpaces,required">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmployeePwd</var-value>
+				</var>
+				<arg key="SLIP.VALIDATION.EMP.PASSWORD" />
+			</field>
+			<field property="sequenceNo" depends="required,numeric">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSequenceNo</var-value>
+				</var>
+				<arg key="SLIP.VALIDATION.SEQ.NUMBER" />
+			</field>
+		</form>
+		<form name="ReprintForm">
+			<field property="employeeId"
+				depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmployeeId</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="SLIP.VALIDATION.EMP.ID" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="empPassword"
+				depends="ValidateSpaces,required">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmployeePwd</var-value>
+				</var>
+				<arg key="SLIP.VALIDATION.EMP.PASSWORD" />
+			</field>
+			<field property="sequenceNo" depends="required,numeric">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSequenceNo</var-value>
+				</var>
+
+				<arg key="SLIP.VALIDATION.SEQ.NUMBER" />
+			</field>
+		</form>			
+		<form name="BeefAuthorizationForm">			
+			<field property="authEmployeeIdOne"
+				depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAuthEmployeeIdOne</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="SLIP.VALIDATION.AUTH.EMP.ID.ONE" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="authPasswordOne"
+				depends="ValidateSpaces,required">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAuthPasswordOne</var-value>
+				</var>
+				<arg key="SLIP.VALIDATION.AUTH.EMP.PASS.ONE" />
+			</field>
+			<field property="authEmployeeIdTwo"
+				depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAuthEmployeeIdTwo</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="SLIP.VALIDATION.AUTH.EMP.ID.TWO" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="authPasswordTwo"
+				depends="ValidateSpaces,required">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAuthPasswordTwo</var-value>
+				</var>
+				<arg key="SLIP.VALIDATION.AUTH.EMP.PASS.TWO" />
+			</field>
+		</form>		
+		<form name="BeefForm">
+			<field property="employeeId"
+				depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmployeeId</var-value>
+				</var>
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>
+				<arg key="SLIP.VALIDATION.EMP.ID" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="empPassword"
+				depends="ValidateSpaces,required">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmpPassword</var-value>
+				</var>
+				<arg key="SLIP.VALIDATION.EMP.PASSWORD" />
+			</field>
+			<field property="slotNo" depends="required,numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSlotSeqLocationNo</var-value>
+				</var>	
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>				
+				<arg key="SLIP.VALIDATION.SLOT.NUMBER" />
+				<arg key="1" resource="false" />
+			</field>
+			<field property="slotLocationNo"
+				depends="required,AlphaNumeric,MaximumLength">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtSlotSeqLocationNo</var-value>
+				</var>
+				<var>
+					<var-name>max_len</var-name>
+					<var-value>10</var-value>
+				</var>					
+				<arg key="SLIP.VALIDATION.SLOT.LOCATION" />
+			</field>
+			<field property="amount" depends="required,ValueRange,Double">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtAmount</var-value>
+				</var>
+				<var>
+                     <var-name>max_val</var-name>
+                     <var-value>99999999999999.00</var-value> 
+               </var>
+               <var>
+                     <var-name>min_val</var-name>
+                     <var-value>0.01</var-value>  
+               </var>
+               <var>
+                     <var-name>type</var-name>
+                     <var-value>double</var-value>  
+               </var> 
+				<arg key="SLIP.VALIDATION.AMOUNT" />
+				<arg key="0.01" resource="false"/>
+                <arg key="99999999999999.00" resource="false"/>
+			</field>
+			<field property="accountNo" depends="required,NonZeroValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtCashlessAccountNo</var-value>
+				</var>
+				<arg key="SLIP.VALIDATION.ACCOUNT.NO" />
+			</field>
+			<field property="confirmAccountNo" depends="required,NonZeroValue,AccountNumberMismatch">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtCashlessAccountNoConfirm</var-value>
+				</var>				
+				<arg key="SLIP.VALIDATION.CONFIRM.ACCOUNT.NO" />
+			</field>
+			<field property="windowNo" depends="AlphaNumeric">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtWindowNo</var-value>
+				</var>
+				<arg key="SLIP.VALIDATION.WINDOW.NUMBER" />
+			</field>
+			<field property="reason"
+				depends="AlphaNumeric">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtReason</var-value>
+				</var>				
+				<arg key="SLIP.VALIDATION.REASON" />
+			</field>
+		</form>
+		<form name="ReportForm">
+			<field property="employeeId"
+				depends="numeric,MinimumValue">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtEmpId</var-value>
+				</var>		
+				<var>
+		        	<var-name>min_val</var-name>
+		        	<var-value>1</var-value>						        	
+		        	<var-jstype>integer</var-jstype>
+		        </var>		
+				<arg key="SLIP.VALIDATION.EMP.ID" />
+				<arg key="1" resource="false" />
+			</field>
+		  <field property="fromDate" depends="required,futureDateUTC"> 
+	       <var>
+          	       	<var-name>control</var-name>
+			       	<var-value>fromDate</var-value>						        	
+			</var>			
+			<arg key="SLIP.VALIDATION.FROM.DATE"/>				
+          </field>        
+            <field property="toDate" depends="required,futureDateUTC,compareDate"> 
+	       <var>
+          	       	<var-name>control</var-name>
+			       	<var-value>toDate</var-value>						        	
+			</var>
+			<var>
+			 	<var-name>fromDate</var-name>
+			    <var-value>fromDate</var-value>	
+			</var>	
+			<arg key="SLIP.VALIDATION.TO.DATE"/>
+			<arg key="SLIP.VALIDATION.FROM.DATE"/>			
+          </field> 			
+		</form>
+	</formset>
+</form-validation>
+
+
