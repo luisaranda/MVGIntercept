@@ -226,7 +226,7 @@ public class TouchScreenTaxComposite extends Composite {
 		}
 		
 		/*Custom Fields for MVG*/
-		interceptCheckBox = new SDSTSCheckBox(readOnlyComp, SWT.NONE, "" , "Intercept", false);
+		interceptCheckBox = new SDSTSCheckBox(readOnlyComp, SWT.NONE, "" , "intercept", false);
 		interceptCheckBox.setImage(new Image(Display.getCurrent(), getClass().getResourceAsStream(ImageConstants.IMAGE_TOUCH_SCREEN_CHECKBOX_UNCHECKED)));
 		interceptCheckBox.setLayoutData(gdRadio1);
 		
@@ -244,8 +244,8 @@ public class TouchScreenTaxComposite extends Composite {
 		lblIntercept.setLayoutData(gdRadio3);
 		txtInterceptAmount = new SDSTSText(readOnlyComp, SWT.NONE, "", FormConstants.FORM_INTERCEPT_AMOUNT, true );
 		txtInterceptAmount.setLayoutData(gdRadio3);
-		txtInterceptAmount.setVisible(true);
-		txtInterceptAmount.setEnabled(false);
+		txtInterceptAmount.setEditable(false);
+		txtInterceptAmount.setEditable(false);
 	}
 	
 	public SDSTSCheckBox getInterceptCheckBox(){

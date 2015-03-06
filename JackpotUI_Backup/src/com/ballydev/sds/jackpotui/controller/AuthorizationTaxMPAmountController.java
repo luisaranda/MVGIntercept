@@ -183,6 +183,19 @@ public class AuthorizationTaxMPAmountController extends SDSBaseController {
 					authorizationComposite.getTaxComposite().getMunicipalTaxCheckBox().setSelected(false);
 				}
 			}
+			if(authorizationComposite.getTaxComposite().getInterceptCheckBox() != null){
+				if(form.getIntercept()) {			
+					authorizationComposite.getTaxComposite().getInterceptCheckBox().setImage(new Image(Display.getCurrent(),getClass().getResourceAsStream(ImageConstants.IMAGE_TOUCH_SCREEN_CHECKBOX_CHECKED)));
+					authorizationComposite.getTaxComposite().getInterceptCheckBox().setSelected(true);	
+					authorizationComposite.getTaxComposite().getTxtInterceptAmount().setEditable(true);
+					authorizationComposite.getTaxComposite().getTxtInterceptAmount().setEnabled(true);
+				}else{			
+					authorizationComposite.getTaxComposite().getInterceptCheckBox().setImage(new Image(Display.getCurrent(), getClass().getResourceAsStream(ImageConstants.IMAGE_TOUCH_SCREEN_CHECKBOX_UNCHECKED)));
+					authorizationComposite.getTaxComposite().getInterceptCheckBox().setSelected(false);
+					authorizationComposite.getTaxComposite().getTxtInterceptAmount().setEditable(false);
+					authorizationComposite.getTaxComposite().getTxtInterceptAmount().setEnabled(false);
+				}
+			}
 		}
 	}
 
@@ -223,9 +236,11 @@ public class AuthorizationTaxMPAmountController extends SDSBaseController {
 				authorizationComposite.getTaxComposite().getMunicipalTaxCheckBox().addMouseListener(listener);
 				authorizationComposite.getTaxComposite().getMunicipalTaxCheckBox().addTraverseListener(this);
 			}
+			if(authorizationComposite.getTaxComposite().getInterceptCheckBox() != null){
+				authorizationComposite.getTaxComposite().getInterceptCheckBox().addMouseListener(listener);
+				authorizationComposite.getTaxComposite().getInterceptCheckBox().addTraverseListener(this);
+			}
 		}
-
-
 	}
 
 	@Override
@@ -480,6 +495,12 @@ public class AuthorizationTaxMPAmountController extends SDSBaseController {
 				form.setFederalTax(true);
 			} else if(selectedButton.getName().equalsIgnoreCase(IAppConstants.MUNICIPAL_TAX_CHECKBOX)) {
 				form.setMunicipalTax(true);
+			} else if(selectedButton.getName().equalsIgnoreCase(IAppConstants.MUNICIPAL_TAX_CHECKBOX)) {
+				form.setMunicipalTax(true);
+			} else if(selectedButton.getName().equalsIgnoreCase(IAppConstants.INTERCEPT_CHECKBOX)) {
+				form.setIntercept(true);
+				authorizationComposite.getTaxComposite().getTxtInterceptAmount().setEditable(true);
+				authorizationComposite.getTaxComposite().getTxtInterceptAmount().setEnabled(true);
 			}
 		} else {			
 			selectedButton.setImage(new Image(Display.getCurrent(),getClass().getResourceAsStream(ImageConstants.IMAGE_TOUCH_SCREEN_CHECKBOX_UNCHECKED)));
@@ -490,6 +511,11 @@ public class AuthorizationTaxMPAmountController extends SDSBaseController {
 				form.setFederalTax(false);
 			} else if(selectedButton.getName().equalsIgnoreCase(IAppConstants.MUNICIPAL_TAX_CHECKBOX)) {
 				form.setMunicipalTax(false);
+			} else if(selectedButton.getName().equalsIgnoreCase(IAppConstants.INTERCEPT_CHECKBOX)) {
+				form.setIntercept(false);
+				authorizationComposite.getTaxComposite().getTxtInterceptAmount().setEditable(false);
+				authorizationComposite.getTaxComposite().getTxtInterceptAmount().setEnabled(false);
+				authorizationComposite.getTaxComposite().getTxtInterceptAmount().setText("");
 			}
 		}
 	}

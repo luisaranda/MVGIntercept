@@ -143,5 +143,7 @@ public interface IAppConstants {
 	
 	String JKPT_TAX_RATE_AMNT_CLEAR_VALUE = "ST:0.0^0.0|FT:0.0^0.0|MT:0.0^0.0";
 	
+	String INTERCEPT_CHECKBOX = "intercept";
+	
 	
 }

@@ -116,6 +116,11 @@ public class AuthorizationTaxMPAmountComposite extends TouchScreenBaseComposite 
 	private TouchScreenTaxComposite taxComposite = null;
 	
 	/**
+	 * MVG Custom Fields Intercept
+	 */
+	private TouchScreenRadioButton btnIntercept = null;
+	
+	/**
 	 * AuthorizationComposite Constructor
 	 * 
 	 * @param parent
@@ -500,6 +505,20 @@ public class AuthorizationTaxMPAmountComposite extends TouchScreenBaseComposite 
 
 	public void setTaxComposite(TouchScreenTaxComposite taxComposite) {
 		this.taxComposite = taxComposite;
+	}
+	
+	/**
+	 * MVG Custom Fields - Intercept
+	 */
+	public void setBtnIntercept(TouchScreenRadioButton btnIntercept) {
+		this.btnIntercept = btnIntercept;
+	}
+	
+	/**
+	 * @return the btnFederalTax
+	 */
+	public TouchScreenRadioButton getIntercept() {
+		return btnIntercept;
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="25,0"
