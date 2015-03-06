@@ -59,6 +59,18 @@ public class AuthorizationTaxMPAmountForm extends SDSForm{
 	/**
 	 * MVG Custom Fields
 	 */
+	private Boolean intercept = false;
+	
+	public Boolean getIntercept() {
+		return intercept;
+	}
+	/**
+	 * @param federalTax the federalTax to set
+	 */
+	public void setIntercept(Boolean intercept) {
+		this.intercept = intercept;
+	}	
+	
 	private String interceptAmount;
 	
 	
