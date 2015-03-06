@@ -15,11 +15,13 @@ import com.ballydev.sds.framework.constant.ITSControlSizeConstants;
 import com.ballydev.sds.framework.control.SDSControlFactory;
 import com.ballydev.sds.framework.control.SDSTSCheckBox;
 import com.ballydev.sds.framework.control.SDSTSLabel;
+import com.ballydev.sds.framework.control.SDSTSText;
 import com.ballydev.sds.framework.util.Util;
 import com.ballydev.sds.jackpotui.constants.ISiteConfigConstants;
 import com.ballydev.sds.jackpotui.constants.ImageConstants;
 import com.ballydev.sds.jackpotui.constants.LabelKeyConstants;
 import com.ballydev.sds.jackpotui.controller.MainMenuController;
+import com.ballydev.sds.jackpotui.constants.FormConstants;
 
 
 
@@ -40,7 +42,15 @@ public class TouchScreenTaxComposite extends Composite {
 	private SDSTSCheckBox federalTaxCheckBox = null;
 	
 	private SDSTSCheckBox municipalTaxCheckBox = null;
+		
+	/**
+	 * MVG Intercept Enhancement 
+	 */
+	private SDSTSCheckBox interceptCheckBox = null;
 	
+	private SDSTSLabel lblIntercept = null;
+	
+	private SDSTSText txtInterceptAmount = null;
 
 	/**
 	 * State Tax label instance
@@ -157,7 +167,7 @@ public class TouchScreenTaxComposite extends Composite {
 		}
 		gdReadOnly.horizontalAlignment = GridData.BEGINNING;
 		GridLayout grlReadOnly = new GridLayout();
-		grlReadOnly.numColumns 		  = 2;
+		grlReadOnly.numColumns 		  = 3;
 		grlReadOnly.verticalSpacing   = 7;
 		grlReadOnly.horizontalSpacing = 15;
 
@@ -177,6 +187,7 @@ public class TouchScreenTaxComposite extends Composite {
 		
 		
 		GridData gdRadio2 = new GridData();
+		gdRadio2.horizontalSpan = 2;
 		gdRadio2.horizontalAlignment = GridData.VERTICAL_ALIGN_END;
 		gdRadio2.horizontalIndent = 16;
 		if( Util.isSmallerResolution() ) {
@@ -214,10 +225,54 @@ public class TouchScreenTaxComposite extends Composite {
 			
 		}
 		
+		/*Custom Fields for MVG*/
+		interceptCheckBox = new SDSTSCheckBox(readOnlyComp, SWT.NONE, "" , "Intercept", false);
+		interceptCheckBox.setImage(new Image(Display.getCurrent(), getClass().getResourceAsStream(ImageConstants.IMAGE_TOUCH_SCREEN_CHECKBOX_UNCHECKED)));
+		interceptCheckBox.setLayoutData(gdRadio1);
 		
-		
+		GridData gdRadio3 = new GridData();
+		gdRadio3.horizontalAlignment = GridData.VERTICAL_ALIGN_END;
+		gdRadio3.horizontalIndent = 16;
+		if( Util.isSmallerResolution() ) {
+			gdRadio3.horizontalIndent = 0;
+		}
+		gdRadio3.grabExcessHorizontalSpace = false;
+		gdRadio3.widthHint = 100 ;
+		gdRadio3.heightHint = 25 ;
+			
+		lblIntercept  = new SDSTSLabel(readOnlyComp, SWT.NONE,LabelLoader.getLabelValue("Intercept"));
+		lblIntercept.setLayoutData(gdRadio3);
+		txtInterceptAmount = new SDSTSText(readOnlyComp, SWT.NONE, "", FormConstants.FORM_INTERCEPT_AMOUNT, true );
+		txtInterceptAmount.setLayoutData(gdRadio3);
+		txtInterceptAmount.setVisible(true);
+		txtInterceptAmount.setEnabled(false);
+	}
+	
+	public SDSTSCheckBox getInterceptCheckBox(){
+		return interceptCheckBox;
+	}
+	
+	public void setInterceptCheckBox(SDSTSCheckBox interceptCheckBox) {
+		this.interceptCheckBox = interceptCheckBox;
+	}
+	
+	public SDSTSLabel getLblIntercept() {
+		return lblIntercept;
+	}
+	
+	public void setLblIntercept(SDSTSLabel lblIntercept) {
+		this.lblIntercept = lblIntercept;
+	}
+	
+	public SDSTSText getTxtInterceptAmount() {
+		return txtInterceptAmount;
 	}
 
+	public void setTxtInterceptAmount(SDSTSText txtInterceptAmount) {
+		this.txtInterceptAmount = txtInterceptAmount;
+	}
+	/*End Custom Fields*/
+	
 	public SDSTSCheckBox getStateTaxCheckBox() {
 		return stateTaxCheckBox;
 	}

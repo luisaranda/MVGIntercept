@@ -75,4 +75,6 @@ public interface FormConstants {
 	public String FORM_PROGRESSIVE_LEVEL = "progressiveLevel";
 	
 	String FORM_SDS_CALCULATED_AMT = "sdsCalculatedAmount";
+	
+	public String FORM_INTERCEPT_AMOUNT = "interceptAmount";
 }

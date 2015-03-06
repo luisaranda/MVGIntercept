@@ -54,7 +54,25 @@ public class AuthorizationTaxMPAmountForm extends SDSForm{
 	 * statePlusFedTax
 	 */
 	private Boolean municipalTax = false;
-
+	
+	
+	/**
+	 * MVG Custom Fields
+	 */
+	private String interceptAmount;
+	
+	
+	public String getInterceptAmount(){
+		return interceptAmount;		
+	}
+	
+	public void setInterceptAmount(String interceptAmount){
+		this.interceptAmount = interceptAmount;
+	}	
+	/**
+	 * End MVG Custom Fields
+	 */
+	
 	/**
 	 * @return the authEmployeeIdOne
 	 */
