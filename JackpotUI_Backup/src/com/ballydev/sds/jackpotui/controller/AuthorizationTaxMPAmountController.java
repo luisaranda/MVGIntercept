@@ -351,6 +351,7 @@ public class AuthorizationTaxMPAmountController extends SDSBaseController {
 		double fedTaxRate = 0;
 		double municipalTaxRate = 0;
 		String taxString = "";
+		double interceptAmount = 0;
 
 		if(MainMenuController.jackpotForm.getRoundedHPJPAmount()!=0){
 			handPaidAmount = ConversionUtil
@@ -378,10 +379,10 @@ public class AuthorizationTaxMPAmountController extends SDSBaseController {
 					MainMenuController.jackpotSiteConfigParams
 					.get(ISiteConfigConstants.MUNICIPAL_TAX_RATE_FOR_JAKCPOT));
 		}
-
-
-
-		taxableAmount = handPaidAmount + machinePaidAmount;
+		
+		interceptAmount = new Double(form.getInterceptAmount());
+		
+		taxableAmount = (handPaidAmount + machinePaidAmount) - interceptAmount;
 
 
 		// code to calculate tax based on the check boxes ticked
@@ -456,7 +457,7 @@ public class AuthorizationTaxMPAmountController extends SDSBaseController {
 
 
 
-		log.info("Taxable amount " + taxableAmount + "\nstate tax "
+		log.info("Intercept Amount " + interceptAmount + "\nTaxable amount " + taxableAmount + "\nstate tax "
 				+ stateTaxRate + "\nfederal tax" + fedTaxRate
 				+ "\ntotalDeductions " + totalDeductions + "\nNetAmount"
 				+ jackpotNetAmount);
