@@ -120,6 +120,8 @@ public class AuthorizationTaxMPAmountComposite extends TouchScreenBaseComposite 
 	 */
 	private TouchScreenRadioButton btnIntercept = null;
 	
+	private SDSTSText txtInterceptAmount = null;
+	
 	/**
 	 * AuthorizationComposite Constructor
 	 * 
@@ -226,6 +228,13 @@ public class AuthorizationTaxMPAmountComposite extends TouchScreenBaseComposite 
 			txtAuthPasswordTwo.setTextLimit(IFieldTextLimits.EMPLOYEE_PASSWORD_TEXT_LIMIT);
 			txtAuthPasswordTwo.setLayoutData(getTopComposite().getGDForText());
 		}
+		
+		
+		txtInterceptAmount = new SDSTSText(
+				getTopComposite(),
+				SWT.NONE,
+				LabelLoader.getLabelValue(LabelKeyConstants.INTERCEPT_AMOUNT),"interceptAmount");
+		
 		
 		getTopComposite().setHeightHint(calculateCompositeHeight(rowCount));
 		getTopComposite().setLayoutForComposite();
@@ -519,6 +528,21 @@ public class AuthorizationTaxMPAmountComposite extends TouchScreenBaseComposite 
 	 */
 	public TouchScreenRadioButton getIntercept() {
 		return btnIntercept;
+	}
+	
+	/**
+	 * @param txtAuthEmployeeIdTwo
+	 *            the txtAuthEmployeeIdTwo to set
+	 */
+	public void setTxtInterceptAmount(SDSTSText txtInterceptAmount) {
+		this.txtInterceptAmount = txtInterceptAmount;
+	}
+
+	/**
+	 * @return the txtAuthPasswordOne
+	 */
+	public SDSTSText getTxtInterceptAmount() {
+		return txtInterceptAmount;
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="25,0"
