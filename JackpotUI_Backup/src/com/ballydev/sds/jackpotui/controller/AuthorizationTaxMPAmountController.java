@@ -382,7 +382,10 @@ public class AuthorizationTaxMPAmountController extends SDSBaseController {
 		
 		interceptAmount = new Double(form.getInterceptAmount());
 		
-		taxableAmount = (handPaidAmount + machinePaidAmount) - interceptAmount;
+		taxableAmount = handPaidAmount + machinePaidAmount;
+		
+		MainMenuController.jackpotForm.setInterceptAmount(ConversionUtil
+				.dollarToCentsRtnLong(String.valueOf(interceptAmount)));
 
 
 		// code to calculate tax based on the check boxes ticked
@@ -397,7 +400,7 @@ public class AuthorizationTaxMPAmountController extends SDSBaseController {
 				municipalTaxAmnt = ConversionUtil.roundHalfUpForTax(taxableAmount, municipalTaxRate);
 			}
 
-			totalDeductions = stateTaxAmnt + fedTaxAmnt + municipalTaxAmnt;
+			totalDeductions = stateTaxAmnt + fedTaxAmnt + municipalTaxAmnt + interceptAmount;
 			jackpotNetAmount = taxableAmount - totalDeductions;
 
 			MainMenuController.jackpotForm
@@ -408,6 +411,10 @@ public class AuthorizationTaxMPAmountController extends SDSBaseController {
 					.dollarToCentsRtnLong(String.valueOf(totalDeductions)));
 		}
 		else {
+			
+			totalDeductions += interceptAmount;
+			taxableAmount = taxableAmount - totalDeductions;
+			
 			MainMenuController.jackpotForm
 			.setJackpotNetAmount(ConversionUtil
 					.dollarToCentsRtnLong(String.valueOf(taxableAmount)));

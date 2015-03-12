@@ -362,6 +362,26 @@ public class JackpotForm {
 	 * Flag to check if the jackpot was generated externally by the progressive controller
 	 */
 	private boolean isJpProgControllerGenerated = false;
+	
+	/**
+	 * MVG custom field
+	 */
+	private long interceptAmount;
+	
+	/**
+	 * @return the handPaidAmount
+	 */
+	public long getInterceptAmount() {
+		return interceptAmount;
+	}
+
+	/**
+	 * @param handPaidAmount
+	 *            the handPaidAmount to set
+	 */
+	public void setInterceptAmount(long interceptAmount) {
+		this.interceptAmount = interceptAmount;
+	}
 
 	/**
 	 * @return the siteLongName

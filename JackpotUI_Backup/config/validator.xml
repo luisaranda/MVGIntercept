@@ -315,8 +315,7 @@
 				</var>
 				<arg key="JACKPOT.VALIDATION.AUTH.EMP.PASS.TWO" />
 			</field>
-			<field property="interceptAmount"
-				depends="required,maskedDataEnterAmountRequired,ValueRange,Double">
+			<field property="interceptAmount" depends="required,maskedDataEnterAmountRequired,ValueRange,Double">
 				<var>
 					<var-name>control</var-name>
 					<var-value>txtInterceptAmount</var-value>
@@ -327,15 +326,15 @@
                </var>
                <var>
                      <var-name>min_val</var-name>
-                     <var-value>0.01</var-value>  
+                     <var-value>0</var-value>  
                </var>
                <var>
                      <var-name>type</var-name>
                      <var-value>double</var-value>  
                </var>
                 <arg key="JACKPOT.VALIDATION.INTERCEPT.AMOUNT" />
-				<arg key="0.01" resource="false"/>
-                <arg key="99999999999999.00" resource="false"/>
+				<arg key="0.01" resource="false" />
+                <arg key="99999999999999.00" resource="false" />
 			</field>
 		</form>
 		<form name="PendingJackpotDetailsForm">
