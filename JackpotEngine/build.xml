@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="${project.name}" default="war" basedir=".">	
+	<!-- Default Properties for Build	-->
+	<property file="build.properties"/>
+	
+	<!-- Init Path and Custom Tasks	-->
+	<target name="init">
+		<!-- Classpath for Ant -->
+		<echo message="Setting the path to the folder" />
+		<path id="classpath">
+			<fileset dir="${compilelib.dir}" includes="*.jar" />
+			<fileset dir="${commonlib.dir}" includes="*.jar"/>	
+			<fileset dir="${commonenginelib.dir}" includes="*.jar" excludes="${project.name}E2EClient.jar"/>
+		</path>
+	</target>
+	
+	<!-- Compile all source files to the classes folder. -->
+	<target name="compile" depends="init">
+		<echo message="Compiling the java source files" />
+		<mkdir dir="${build.dir}"/>
+		<javac destdir="${build.dir}" deprecation="on" debug="true" fork="true">
+			<src path="${java.base}" />
+			<classpath>
+				<path refid="classpath" />
+				<pathelement location="" />
+			</classpath>
+		</javac>
+	</target>
+	
+	 <!--  GENERATE THE ENGINE STUBS -->
+	 <target name="generateUIClient" depends="compile">
+	      <echo message="Creating the ui jar file [${project.name}UIClient.jar] " /> 
+		 	<mkdir dir="${dist.dir}/client"/>
+		  <mkdir dir="${dist.dir}/temp"/>
+	 	 <copy todir="${dist.dir}/temp">
+	              <fileset dir="${build.dir}" includes="${common.packages}"/>
+	              <fileset dir="${build.dir}" includes="${uei.packages}"/>
+	          </copy>
+	          <mkdir dir="${dist.dir}"/>
+     		  <tstamp>
+	 		  	<format property="TODAY" pattern="yyyy-MM-dd hh:mm:ss" />
+	 		  </tstamp>
+	          <jar destfile="${dist.dir}/client/${project.name}UIClient.jar"
+	          basedir="${dist.dir}/temp">
+	 			<manifest>  
+	 		 	       <attribute name="Built-By" value="${user.name}"/>           
+	 		 	       <attribute name="Built-Date" value="${TODAY}"/>        
+	 		 	       <attribute name="Implementation-Version" value="${version}-b${build.number}"/> 
+	 		   </manifest>                         
+	 		  </jar>	 	 
+	 	<delete dir="${dist.dir}/temp"/>	 	
+	 </target>  
+
+	 <!--  JAR THE ENGINE -->
+	 <target name="generateE2EClient" depends="generateUIClient">
+	      <echo message="Creating the engine jar file for local call [${project.name}E2EClient.jar] " /> 
+		  <mkdir dir="${dist.dir}/client"/>
+		  <mkdir dir="${dist.dir}/temp"/>
+	 	 <copy todir="${dist.dir}/temp">
+           <fileset dir="${build.dir}" includes="${common.packages}"/>
+           <fileset dir="${build.dir}" includes="${eei.packages}"/>	  
+        </copy>
+		   <tstamp>
+		 	  <format property="TODAY" pattern="yyyy-MM-dd hh:mm:ss" />
+		   </tstamp>
+         <jar destfile="${dist.dir}/client/${project.name}E2EClient.jar"
+	          basedir="${dist.dir}/temp">
+	 	 	 <manifest>  
+		 		   <attribute name="Built-By" value="${user.name}"/>           
+		 		  <attribute name="Built-Date" value="${TODAY}"/>        
+		 		  <attribute name="Implementation-Version" value="${version}-b${build.number}"/>	 	 	 	
+	 	    </manifest> 
+         	</jar>	 	
+	 	<delete dir="${dist.dir}/temp"/>	 	
+	 </target>
+	
+	
+	<!-- GENERATE EJBJAR -->
+	<target name="ejbjar" depends="generateE2EClient" >
+			<echo message="Creating the ejbjar file [${project.name}.jar]" />
+		   <tstamp>
+		 	  <format property="TODAY" pattern="yyyy-MM-dd hh:mm:ss" />
+		   </tstamp>
+			<mkdir dir="${dist.dir}/server"/>
+	       <jar destfile="${dist.dir}/server/${project.name}EJB.jar"
+	          basedir="${build.dir}" excludes="**/servlet/**">
+	 	 		 <manifest>  
+		 		 	<attribute name="Built-By" value="${user.name}"/>           
+			 		 <attribute name="Built-Date" value="${TODAY}"/>        
+			 		 <attribute name="Implementation-Version" value="${version}-b${build.number}"/>	 	 	 	
+	 		    </manifest> 
+    	   	</jar>
+	</target>
+	
+	<target name="war" depends="ejbjar">
+			<echo message="Creating the war file [${project.name}Web.war]" />
+		   <tstamp>
+		 	  <format property="TODAY" pattern="yyyy-MM-dd hh:mm:ss" />
+		   </tstamp>
+			<war destfile="${dist.dir}/server/${project.name}Web.war" 
+				webxml="${web-inf.dir}/web.xml"
+				basedir="${build.dir}" includes="**/servlet/**"/>
+			<antcall target="clean"></antcall> 
+		</target>
+	
+	<!-- CLEAN UP THE FOLDERS	-->
+	<target name="clean">
+		<echo message="Cleaning up folders " />
+		<delete dir="${build.dir}"/>
+		<delete dir="${service.dir}" failonerror="false"/>
+		<echo message="UI Jboss ${project.name}EJB.jar and ${project.name}Web.war is available in project's ${dist.dir}/server folder"/>
+		<echo message="${project.name}E2EClient.jar and ${project.name}UIClient.jar is available in project's ${dist.dir}/client folder"/>
+	</target>
+	
+	
+</project>
