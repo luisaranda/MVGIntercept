@@ -489,6 +489,24 @@ public class JackpotDTO extends JackpotBaseDTO{
 	 */
 	private boolean isJpProgControllerGenerated = false;
 	
+	/**
+	 * MVG Intercept
+	 */
+	
+	private long interceptAmount;
+	
+	
+	public long getInterceptAmount(){
+		return interceptAmount;
+	}
+	
+	public void setInterceptAmount(long interceptAmount){
+		this.interceptAmount = interceptAmount;
+	}
+	
+	/**
+	 * End MVG custom code
+	 */
 	
 	public boolean isValidateEmpSession() {
 		return validateEmpSession;

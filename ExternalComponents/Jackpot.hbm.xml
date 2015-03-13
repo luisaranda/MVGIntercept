@@ -1,0 +1,62 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--************************************************************************ -->
+<!-- $Id$ -->
+<!-- $Date$ -->
+<!--************************************************************************ -->
+<!--           Copyright (c) 2006 Bally Technology  1977 - 2008              -->
+<!--  All programs and files on this medium are operated under U.S.          -->
+<!--  patents Nos. 5,429,361 & 5,470,079                                     -->
+<!--                                                                         -->
+<!--  All programs and files on this medium are copyrighted works and all    -->
+<!--  rights are reserved.  Duplication of these in whole or in part is      -->
+<!--  prohibited without written permission from Bally Gaming Inc.,          -->
+<!--  Las Vegas, Nevada, U.S.A                                               -->
+<!--************************************************************************ -->
+<hibernate-mapping schema="SLIP" auto-import="false">
+	<class name="com.ballydev.sds.jackpot.db.slip.Jackpot" table="JACKPOT">
+		<id name="id" column="JKPT_ID" />
+		<property name="slipReferenceId" column="SLPR_ID"/>
+		<property name="jackpotTypeId" column="JPTY_ID"/>
+		<property name="taxTypeId" column="TAXT_ID"/>
+		<property name="jackpotId" column="JKPT_JACKPOT_ID"/>
+		<property name="associatedPlayerCard" column="JKPT_ASSOCIATED_PLAYER_CARD"/>
+		<property name="playerCard" column="JKPT_PLAYER_CARD"/>
+		<property name="playerName" column="JKPT_PLAYER_NAME"/>
+		<property name="originalAmount" column="JKPT_ORIGINAL_AMOUNT"/>
+		<property name="machinePaidAmount" column="JKPT_MACHINE_PAID_AMOUNT"/>
+		<property name="hpjpAmount" column="JKPT_HPJP_AMOUNT"/>
+		<property name="hpjpAmountRounded" column="JKPT_HPJP_AMOUNT_ROUNDED"/>
+		<property name="netAmount" column="JKPT_NET_AMOUNT"/>
+		<property name="taxAmount" column="JKPT_TAX_AMOUNT"/>
+		<property name="payline" column="JKPT_PAYLINE"/>
+		<property name="coinsPlayed" column="JKPT_COINS_PLAYED"/>
+		<property name="winningCombination" column="JKPT_WINNING_COMBINATION"/>
+		<property name="blindAttempt" column="JKPT_BLIND_ATTEMPT"/>
+		<property name="calculatedSDSAmount" column="JKPT_CALC_SDS_AMOUNT"/>
+		<property name="promptedPMUAmount" column="JKPT_PRMT_PMU_AMOUNT"/>
+		<property name="pmuAmountUsed" column="JKPT_PMU_AMOUNT_USED"/>
+		<property name="expiryDate" column="JKPT_EXPIRY_TS"/>
+		<property name="isSlotOnline" column="JKPT_SLOT_ONLINE"/>
+		<property name="progressiveLevel" column="JKPT_PROG_LEVELS" />
+		<property name="generatedBy" column="JKPT_GENERATED_BY" />
+		<property name="createdTs" column="JKPT_CREATED_TS" insert="true" update="false"/>
+		<property name="createdUser" column="JKPT_CREATED_USER" insert="true" update="false"/>
+		<property name="updatedTs" column="JKPT_UPDATED_TS" insert="false" update="true"/>
+		<property name="updatedUser" column="JKPT_UPDATED_USER" insert="false" update="true"/>
+		<property name="deletedTs" column="JKPT_DELETED_TS"/>
+		<property name="deletedUser" column="JKPT_DELETED_USER"/>
+		<property name="taxRateAmount" column="JKPT_TAX_RATE_AMOUNT"/>
+		<property name="interceptAmount" column="JKPT_INTERCEPT_AMOUNT"/>
+		<many-to-one name="jackpotType" class="com.ballydev.sds.jackpot.db.slip.JackpotType" fetch="join" lazy="false" insert="false" update="false">
+			<column name="JPTY_ID" not-null="true"/>
+		</many-to-one>
+		<many-to-one name="slipReference" class="com.ballydev.sds.jackpot.db.slip.SlipReference" fetch="select" insert="false" update="false">
+			<column name="SLPR_ID" not-null="true"/>
+		</many-to-one>
+		<many-to-one name="taxType" class="com.ballydev.sds.jackpot.db.slip.TaxType" fetch="select" insert="false" update="false">
+			<column name="TAXT_ID" not-null="false"/>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

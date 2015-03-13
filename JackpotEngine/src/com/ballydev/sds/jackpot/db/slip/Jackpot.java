@@ -223,7 +223,19 @@ public class Jackpot implements java.io.Serializable {
 	 */
 	private String taxRateAmount = null;
 	
+	/**
+	 * MVG Custom enhancement
+	 */
+	private Long interceptAmount = null;
 	
+	
+	public long getInterceptAmount() {
+		return this.interceptAmount;
+	}
+		
+	public void setInterceptAmount(Long interceptAmount) {
+		this.interceptAmount = interceptAmount;
+	}	
 	
 	/**
 	 * The default constructor for POJO Jackpot.
