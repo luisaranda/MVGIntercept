@@ -2646,6 +2646,7 @@ public class JackpotDAO implements ILookupTableConstants {/*
 					}
 					jackpot.setWinningCombination(jackpotDTO.getWinningComb());
 					jackpot.setPayline(jackpotDTO.getPayline());
+					jackpot.setInterceptAmount(jackpotDTO.getInterceptAmount());
 					jackpot.setUpdatedTs(DateHelper
 							.getUTCTimeFromLocal(currentDate));
 					jackpot.setUpdatedUser(PadderUtil.lPad(
