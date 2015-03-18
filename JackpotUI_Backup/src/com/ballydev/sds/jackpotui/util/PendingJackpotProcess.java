@@ -243,6 +243,9 @@ public class PendingJackpotProcess {
 				}
 				jackpotDTO.setExpiryDate(MainMenuController.jackpotForm.getExpiryDate());
 				
+				// Custom enhancement for MVG
+				jackpotDTO.setInterceptAmount(MainMenuController.jackpotForm.getInterceptAmount());
+				
 				if (MainMenuController.jackpotForm.getSlotAttentantFirstName() != null) {
 					jackpotDTO.setSlotAttendantFirstName(MainMenuController.jackpotForm
 							.getSlotAttentantFirstName());
