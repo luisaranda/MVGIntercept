@@ -333,7 +333,7 @@
                      <var-value>double</var-value>  
                </var>
                 <arg key="JACKPOT.VALIDATION.INTERCEPT.AMOUNT" />
-				<arg key="0.01" resource="false" />
+				<arg key="0" resource="false" />
                 <arg key="99999999999999.00" resource="false" />
 			</field>
 		</form>
@@ -484,6 +484,27 @@
 			</field>
 		</form>	
 		<form name="ManualJPAuthMachineAmtTaxForm">
+			<field property="interceptAmount" depends="required,maskedDataEnterAmountRequired,ValueRange,Double">
+				<var>
+					<var-name>control</var-name>
+					<var-value>txtInterceptAmount</var-value>
+				</var>
+				<var>
+                     <var-name>max_val</var-name>
+                     <var-value>99999999999999.00</var-value> 
+               </var>
+               <var>
+                     <var-name>min_val</var-name>
+                     <var-value>0</var-value>  
+               </var>
+               <var>
+                     <var-name>type</var-name>
+                     <var-value>double</var-value>  
+               </var>
+                <arg key="JACKPOT.VALIDATION.INTERCEPT.AMOUNT" />
+				<arg key="0" resource="false" />
+                <arg key="99999999999999.00" resource="false" />
+			</field>
 			<field property="authEmployeeIdOne"
 				depends="required,numeric,MinimumValue">
 				<var>
@@ -550,7 +571,7 @@
 				<arg key="0.01" resource="false"/>
                 <arg key="999999999.99" resource="false"/> 
 			</field> -->
-		</form>
+		</form>	
 		<form name="ManualJPLastScreenForm">
 			<field property="payline" depends="NumericSpacesCommas,MinMaxValuesBetweenCommas,DuplicateValuesBetweenCommas">
 				<var>

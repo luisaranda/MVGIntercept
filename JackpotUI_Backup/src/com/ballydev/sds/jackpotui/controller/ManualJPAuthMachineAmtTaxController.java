@@ -148,6 +148,21 @@ public class ManualJPAuthMachineAmtTaxController extends SDSBaseController {
 					manualJpScreen3AuthComp.getTaxComposite().getMunicipalTaxCheckBox().setSelected(false);
 				}
 			}
+			if(manualJpScreen3AuthComp.getTaxComposite().getInterceptCheckBox() != null) {
+				if(form.getIntercept()) {
+					manualJpScreen3AuthComp.getTaxComposite().getInterceptCheckBox().setImage(new Image(Display.getCurrent(),getClass().getResourceAsStream(ImageConstants.IMAGE_TOUCH_SCREEN_CHECKBOX_CHECKED)));
+					manualJpScreen3AuthComp.getTaxComposite().getInterceptCheckBox().setSelected(true);
+					manualJpScreen3AuthComp.getTaxComposite().getTxtInterceptAmount().setEditable(true);
+					manualJpScreen3AuthComp.getTaxComposite().getTxtInterceptAmount().setEnabled(true);
+					
+				}else	 {
+					manualJpScreen3AuthComp.getTaxComposite().getInterceptCheckBox().setImage(new Image(Display.getCurrent(), getClass().getResourceAsStream(ImageConstants.IMAGE_TOUCH_SCREEN_CHECKBOX_UNCHECKED)));
+					manualJpScreen3AuthComp.getTaxComposite().getInterceptCheckBox().setSelected(false);
+					manualJpScreen3AuthComp.getTaxComposite().getTxtInterceptAmount().setEditable(false);
+					manualJpScreen3AuthComp.getTaxComposite().getTxtInterceptAmount().setEnabled(false);
+					
+				}
+			}
 		}
 	}
 	/*
@@ -186,6 +201,11 @@ public class ManualJPAuthMachineAmtTaxController extends SDSBaseController {
 				manualJpScreen3AuthComp.getTaxComposite().getMunicipalTaxCheckBox().addMouseListener(listener);
 				manualJpScreen3AuthComp.getTaxComposite().getMunicipalTaxCheckBox().addTraverseListener(this);
 			}
+			if(manualJpScreen3AuthComp.getTaxComposite().getInterceptCheckBox() != null){ 
+				manualJpScreen3AuthComp.getTaxComposite().getInterceptCheckBox().addMouseListener(listener); 
+				manualJpScreen3AuthComp.getTaxComposite().getInterceptCheckBox().addTraverseListener(this); 
+			} 
+
 		}
 	}
 
@@ -400,6 +420,7 @@ public class ManualJPAuthMachineAmtTaxController extends SDSBaseController {
 		double fedTaxRate = 0;
 		double municipalTaxRate = 0;
 		String taxString = "";
+		double interceptAmount = 0;
 
 		
 	
@@ -429,10 +450,13 @@ public class ManualJPAuthMachineAmtTaxController extends SDSBaseController {
 					MainMenuController.jackpotSiteConfigParams
 					.get(ISiteConfigConstants.MUNICIPAL_TAX_RATE_FOR_JAKCPOT));
 		}
-
-
+		
+		interceptAmount = new Double(form.getInterceptAmount());
 
 		taxableAmount = handPaidAmount + machinePaidAmount;
+		
+		MainMenuController.jackpotForm.setInterceptAmount(ConversionUtil
+				.dollarToCentsRtnLong(String.valueOf(interceptAmount)));
 
 
 		// code to calculate tax based on the check boxes ticked
@@ -447,7 +471,7 @@ public class ManualJPAuthMachineAmtTaxController extends SDSBaseController {
 				municipalTaxAmnt = ConversionUtil.roundHalfUpForTax(taxableAmount, municipalTaxRate);
 			}
 
-			totalDeductions = stateTaxAmnt + fedTaxAmnt + municipalTaxAmnt;
+			totalDeductions = stateTaxAmnt + fedTaxAmnt + municipalTaxAmnt + interceptAmount;
 			jackpotNetAmount = taxableAmount - totalDeductions;
 
 			MainMenuController.jackpotForm
@@ -458,6 +482,10 @@ public class ManualJPAuthMachineAmtTaxController extends SDSBaseController {
 					.dollarToCentsRtnLong(String.valueOf(totalDeductions)));
 		}
 		else {
+			
+			totalDeductions += interceptAmount;
+			taxableAmount -= totalDeductions;
+			
 			MainMenuController.jackpotForm
 			.setJackpotNetAmount(ConversionUtil
 					.dollarToCentsRtnLong(String.valueOf(taxableAmount)));
@@ -506,7 +534,7 @@ public class ManualJPAuthMachineAmtTaxController extends SDSBaseController {
 
 
 
-		log.info("Taxable amount " + taxableAmount + "\nstate tax "
+		log.info("Intercept Amount " + interceptAmount + "\nTaxable amount " + taxableAmount + "\nstate tax "
 				+ stateTaxRate + "\nfederal tax" + fedTaxRate
 				+ "\ntotalDeductions " + totalDeductions + "\nNetAmount"
 				+ jackpotNetAmount);
@@ -536,6 +564,9 @@ public class ManualJPAuthMachineAmtTaxController extends SDSBaseController {
 				else if(form.getMunicipalTax()){
 					manualJpScreen3AuthComp.getTaxComposite().getMunicipalTaxCheckBox().setImage(new Image(Display.getCurrent(),getClass().getResourceAsStream(ImageConstants.IMAGE_TOUCH_SCREEN_CHECKBOX_CHECKED)));
 				}
+				else if(form.getIntercept()){
+					manualJpScreen3AuthComp.getTaxComposite().getInterceptCheckBox().setImage(new Image(Display.getCurrent(),getClass().getResourceAsStream(ImageConstants.IMAGE_TOUCH_SCREEN_CHECKBOX_CHECKED)));
+				}
 			}	
 	}
 
@@ -555,7 +586,11 @@ public class ManualJPAuthMachineAmtTaxController extends SDSBaseController {
 				form.setFederalTax(true);
 			} else if(selectedButton.getName().equalsIgnoreCase(IAppConstants.MUNICIPAL_TAX_CHECKBOX)) {
 				form.setMunicipalTax(true);
-			}
+			} else if(selectedButton.getName().equalsIgnoreCase(IAppConstants.INTERCEPT_CHECKBOX)) {
+				form.setIntercept(true);
+				manualJpScreen3AuthComp.getTaxComposite().getTxtInterceptAmount().setEditable(true);
+				manualJpScreen3AuthComp.getTaxComposite().getTxtInterceptAmount().setEnabled(true);
+			} 
 		} else {			
 			selectedButton.setImage(new Image(Display.getCurrent(),getClass().getResourceAsStream(ImageConstants.IMAGE_TOUCH_SCREEN_CHECKBOX_UNCHECKED)));
 			selectedButton.setSelected(false);	
@@ -565,7 +600,12 @@ public class ManualJPAuthMachineAmtTaxController extends SDSBaseController {
 				form.setFederalTax(false);
 			} else if(selectedButton.getName().equalsIgnoreCase(IAppConstants.MUNICIPAL_TAX_CHECKBOX)) {
 				form.setMunicipalTax(false);
-			}
+			} else if(selectedButton.getName().equalsIgnoreCase(IAppConstants.INTERCEPT_CHECKBOX)) {
+				form.setIntercept(false);
+				manualJpScreen3AuthComp.getTaxComposite().getTxtInterceptAmount().setEditable(false);
+				manualJpScreen3AuthComp.getTaxComposite().getTxtInterceptAmount().setEnabled(false);
+				manualJpScreen3AuthComp.getTaxComposite().getTxtInterceptAmount().setText("");
+			}			
 		}
 	}
 
@@ -630,7 +670,9 @@ public class ManualJPAuthMachineAmtTaxController extends SDSBaseController {
 								fieldNames.add(FormConstants.FORM_AUTH_EMP_PASS_TWO);
 							}
 						}
-
+						
+						fieldNames.add(FormConstants.FORM_INTERCEPT_AMOUNT);
+						
 						/*if (MainMenuController.jackpotSiteConfigParams.get(
 								ISiteConfigConstants.ALLOW_MACHINE_PAY_ON_JP_SLIPS)
 								.equalsIgnoreCase("yes")) {

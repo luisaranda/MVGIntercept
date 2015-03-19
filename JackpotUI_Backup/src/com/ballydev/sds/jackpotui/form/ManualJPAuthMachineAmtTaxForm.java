@@ -50,6 +50,33 @@ public class ManualJPAuthMachineAmtTaxForm extends SDSForm {
 	 */
 	private String machinePaidAmount;
 	
+	/**
+	 * MVG Custom Fields
+	 */
+	private Boolean intercept = false;
+	
+	public Boolean getIntercept() {
+		return intercept;
+	}
+
+	public void setIntercept(Boolean intercept) {
+		this.intercept = intercept;
+	}	
+	
+	private String interceptAmount;
+	
+	
+	public String getInterceptAmount(){
+		return interceptAmount;		
+	}
+	
+	public void setInterceptAmount(String interceptAmount){
+		this.interceptAmount = interceptAmount;
+	}	
+	/**
+	 * End MVG Custom Fields
+	 */
+	
 	public Boolean getMunicipalTax() {
 		return municipalTax;
 	}

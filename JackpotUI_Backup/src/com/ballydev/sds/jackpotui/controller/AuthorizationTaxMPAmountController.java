@@ -413,7 +413,7 @@ public class AuthorizationTaxMPAmountController extends SDSBaseController {
 		else {
 			
 			totalDeductions += interceptAmount;
-			taxableAmount = taxableAmount - totalDeductions;
+			taxableAmount -= totalDeductions;
 			
 			MainMenuController.jackpotForm
 			.setJackpotNetAmount(ConversionUtil
@@ -484,6 +484,9 @@ public class AuthorizationTaxMPAmountController extends SDSBaseController {
 			}
 			if(form.getMunicipalTax()){
 				authorizationComposite.getTaxComposite().getMunicipalTaxCheckBox().setImage(new Image(Display.getCurrent(),getClass().getResourceAsStream(ImageConstants.IMAGE_TOUCH_SCREEN_CHECKBOX_CHECKED)));
+			}
+			if(form.getIntercept()){
+				authorizationComposite.getTaxComposite().getInterceptCheckBox().setImage(new Image(Display.getCurrent(),getClass().getResourceAsStream(ImageConstants.IMAGE_TOUCH_SCREEN_CHECKBOX_CHECKED)));
 			}
 		}		
 	}
@@ -572,7 +575,7 @@ public class AuthorizationTaxMPAmountController extends SDSBaseController {
 						}
 					} else if (((SDSImageLabel) control).getName().equalsIgnoreCase(
 					"next")) {
-
+						
 						log.info("************ After next button is clicked:**********");
 						populateForm(authorizationComposite);
 						boolean validate = validate("AuthorizationTaxMPAmountForm",

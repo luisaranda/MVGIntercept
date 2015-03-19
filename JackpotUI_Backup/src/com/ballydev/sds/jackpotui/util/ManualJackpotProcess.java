@@ -172,6 +172,8 @@ public class ManualJackpotProcess {
 					+ MainMenuController.jackpotForm.getJackpotNetAmount());
 		}
 		// jackpotDTO.setMachinePaidAmount(MainMenuController.jackpotForm.getMachinePaidAmount());
+		
+		jackpotDTO.setInterceptAmount(MainMenuController.jackpotForm.getInterceptAmount());
 
 		JackpotFilter filter = new JackpotFilter();
 		// JackpotAssetInfoDTO assetInfoDTO = null;

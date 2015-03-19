@@ -27,6 +27,7 @@ import com.ballydev.sds.jackpotui.constants.IFieldTextLimits;
 import com.ballydev.sds.jackpotui.constants.ISiteConfigConstants;
 import com.ballydev.sds.jackpotui.constants.LabelKeyConstants;
 import com.ballydev.sds.jackpotui.controller.MainMenuController;
+import com.ballydev.sds.jackpotui.controls.TouchScreenRadioButton;
 
 /**
  * Class contains the authorizing employees' name and passwords, and the tax type
@@ -77,6 +78,14 @@ public class ManualJPAuthMachineAmtTaxComposite extends TouchScreenBaseComposite
 	private SDSTSText txtAuthPasswordTwo = null;
 
 	private TouchScreenTaxComposite taxComposite = null;
+	
+	/**
+	* MVG Custom Fields Intercept
+	*/	
+	private TouchScreenRadioButton btnIntercept = null;
+	
+	private SDSTSText txtInterceptAmount = null;
+	
 	
 
 	/**
@@ -201,6 +210,11 @@ public class ManualJPAuthMachineAmtTaxComposite extends TouchScreenBaseComposite
 			txtAuthPasswordTwo.setTextLimit(IFieldTextLimits.EMPLOYEE_PASSWORD_TEXT_LIMIT);
 			txtAuthPasswordTwo.setLayoutData(getTopComposite().getGDForText());
 		}
+		
+		txtInterceptAmount = new SDSTSText(
+				getTopComposite(),
+				SWT.NONE,
+				LabelLoader.getLabelValue(LabelKeyConstants.INTERCEPT_AMOUNT),"interceptAmount");
 
 		getTopComposite().setHeightHint(calculateCompositeHeight(rowCount));
 		getTopComposite().setLayoutForComposite();
@@ -393,6 +407,25 @@ public class ManualJPAuthMachineAmtTaxComposite extends TouchScreenBaseComposite
 
 	public void setTaxComposite(TouchScreenTaxComposite taxComposite) {
 		this.taxComposite = taxComposite;
+	}
+	
+	/**
+	* MVG Custom Fields Intercept
+	*/	
+	public void setBtnIntercept(TouchScreenRadioButton btnIntercept) {
+		this.btnIntercept = btnIntercept;
+	}
+	
+	public TouchScreenRadioButton getIntercept() {
+		return btnIntercept;
+	}
+	
+	public void setTxtInterceptAmount(SDSTSText txtInterceptAmount) {
+		this.txtInterceptAmount = txtInterceptAmount;
+	}
+	
+	public SDSTSText getTxtInterceptAmount() {
+		return txtInterceptAmount;
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="135,0"

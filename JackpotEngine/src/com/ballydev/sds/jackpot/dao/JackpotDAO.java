@@ -2951,6 +2951,7 @@ public class JackpotDAO implements ILookupTableConstants {/*
 			// always the blind attempt
 			// field is not null.
 			jackpot.setPayline(jackpotDTO.getPayline());
+			jackpot.setInterceptAmount(jackpotDTO.getInterceptAmount());
 			jackpot.setIsSlotOnline(new Short("0")); // SETTING AS OFFLINE
 														// MESSAGE
 			jackpot.setProgressiveLevel(jackpotDTO.getProgressiveLevel()); // SETTING
