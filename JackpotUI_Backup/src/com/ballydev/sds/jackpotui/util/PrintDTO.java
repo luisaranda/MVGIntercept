@@ -314,6 +314,22 @@ public class PrintDTO {
 	 * @author vsubha
 	 */
 	private String payoutType;
+	
+	/*
+	 * MVG Custom field
+	 */
+	private String interceptAmount;
+	
+	public String getInterceptAmount() {
+		return interceptAmount;
+	}
+	
+	public void setInterceptAmount(String interceptAmount) {
+		this.interceptAmount = interceptAmount;
+	}
+	/*
+	 * End MVG custom fields
+	 */	
 
 	/**
 	 * @return the assetConfigLocation

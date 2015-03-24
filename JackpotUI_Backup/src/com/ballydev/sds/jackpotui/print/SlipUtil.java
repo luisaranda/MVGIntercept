@@ -468,6 +468,11 @@ public class SlipUtil implements ILookupTableConstants{
 		if(jackpotDTO.getAccountNumber() != null) {
 			printDTO.setAccountNumber(jackpotDTO.getAccountNumber().toString());			
 		}
+		
+		printDTO.setInterceptAmount(MainMenuController.jackpotForm.getSiteCurrencySymbol()
+				+ JackpotUIUtil.getFormattedAmounts(ConversionUtil.centsToDollar(jackpotDTO
+						.getInterceptAmount())));
+		
 		return printDTO;
 	}
 	

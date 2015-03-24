@@ -2766,6 +2766,8 @@ public class JackpotDAO implements ILookupTableConstants {/*
 						.getPostToAccounting());
 				returnJackpotDTO.setS2SJackpotProcess(jackpotDTO
 						.isS2SJackpotProcess());
+				returnJackpotDTO.setInterceptAmount(jackpotDTO
+						.getInterceptAmount());
 
 				if (log.isDebugEnabled()) {
 					log.debug("Status Flag Desc:"

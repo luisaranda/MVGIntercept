@@ -273,6 +273,12 @@ public class SlipImage {
 						slipFieldValue = slipFieldValue + "(" + hpjpAmnt + " * " + municipalTaxRate + "%)"; 		
 						image = image.append(slipFieldValue + ": " + value
 								+ getCommand(printerCmd.get(fieldElement.getAttributeValue("linefeed"))));
+					} else if (fieldElement.getName() != null && fieldElement.getName().equalsIgnoreCase("InterceptAmount")) {
+						slipFieldValue = (slipI18NMap.get(fieldElement.getAttributeValue("key")) != null) ? slipI18NMap
+								.get(fieldElement.getAttributeValue("key")) : fieldElement.getAttributeValue("key");
+						//slipFieldValue = slipFieldValue + "(" + hpjpAmnt + " * " + municipalTaxRate + "%)"; 		
+						image = image.append(slipFieldValue + ": " + value
+								+ getCommand(printerCmd.get(fieldElement.getAttributeValue("linefeed"))));
 					} else if (slipType.equalsIgnoreCase(IAppConstants.JACKPOT_PRINT_SLIP_TYPE)
 							&& MainMenuController.jackpotSiteConfigParams.get(
 									ISiteConfigConstants.ENABLE_JACKPOT_MULTI_RANGE_SIGN).equalsIgnoreCase(

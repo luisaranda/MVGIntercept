@@ -210,7 +210,7 @@ public class PendingJackpotProcess {
 				if (MainMenuController.jackpotForm.getJackpotNetAmount() != 0) {
 					jackpotDTO.setJackpotNetAmount(MainMenuController.jackpotForm.getJackpotNetAmount());
 				}
-
+				
 				String printerUsed = SDSPreferenceStore
 						.getStringStoreValue(IAppConstants.JACKPOT_PRINTER_PREFERENCE_KEY);
 				if (printerUsed != null)

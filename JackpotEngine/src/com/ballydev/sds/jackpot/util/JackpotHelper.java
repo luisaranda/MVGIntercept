@@ -490,6 +490,9 @@ public class JackpotHelper implements IAppConstants{
 			if (jackpot.getPayline() != null) {
 				jackpotDTO.setPayline(jackpot.getPayline());
 			}
+			
+			jackpotDTO.setInterceptAmount(jackpot.getInterceptAmount());
+			
 			if (jackpot.getAssociatedPlayerCard() != null) {
 				jackpotDTO.setAssociatedPlayerCard(jackpot
 						.getAssociatedPlayerCard());
