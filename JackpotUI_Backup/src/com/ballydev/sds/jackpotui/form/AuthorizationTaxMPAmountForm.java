@@ -79,10 +79,7 @@ public class AuthorizationTaxMPAmountForm extends SDSForm{
 	}
 	
 	public void setInterceptAmount(String interceptAmount){
-		String oldValue = this.interceptAmount;
-		String newValue = interceptAmount;
 		this.interceptAmount = interceptAmount;
-		firePropertyChange("interceptAmount", oldValue, newValue);		
 	}	
 	/**
 	 * End MVG Custom Fields
