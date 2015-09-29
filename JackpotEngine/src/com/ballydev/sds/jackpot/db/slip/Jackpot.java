@@ -229,7 +229,7 @@ public class Jackpot implements java.io.Serializable {
 	private Long interceptAmount = null;
 	
 	
-	public long getInterceptAmount() {
+	public Long getInterceptAmount() {
 		return this.interceptAmount;
 	}
 		
